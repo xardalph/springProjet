@@ -1,29 +1,15 @@
-# README #
+Spring Hibernate project
+=========================
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Templates pour le projet Spring Hibernate des EPSI B3.
 
-### What is this repository for? ###
+Pour compiler l'application :
+`./gradlew classes`
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Pour démarrer l'application :
+* partie I à III :
+`./gradlew appRun`
+* partie IV et suivante :
+`./gradlew bootRun`
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Les exemples de code se trouvent dans le répertoire : `./resourcesEtudiant`
