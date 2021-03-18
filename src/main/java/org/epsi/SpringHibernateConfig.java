@@ -1,4 +1,4 @@
-package org.epsi.b3.simplewebapp.spring.config;
+package org.epsi;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,11 +6,13 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
+@EnableTransactionManagement
 public class SpringHibernateConfig {
 
     @Bean
@@ -27,10 +29,10 @@ public class SpringHibernateConfig {
     public DataSource dataSource() {
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:mem:db;DB_CLOSE_DELAY=-1");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost/spring?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC");
         dataSource.setUsername("root");
-        dataSource.setPassword("WWFGAtbppUXjKh7E");
+        dataSource.setPassword("");
 
         return dataSource;
     }
@@ -48,11 +50,11 @@ public class SpringHibernateConfig {
                 //"hibernate.hbm2ddl.auto", "create-drop");
                 "hibernate.hbm2ddl.auto", "update");
         hibernateProperties.setProperty(
-                "hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+                "hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 
         // Bind one session per request : configures SessionFactory.useCurrentSession()
-        hibernateProperties.setProperty(
-                "hibernate.current_session_context_class", "thread");
+//        hibernateProperties.setProperty(
+//                "hibernate.current_session_context_class", "thread");
 
         // Disable the second-level cache
         hibernateProperties.setProperty(

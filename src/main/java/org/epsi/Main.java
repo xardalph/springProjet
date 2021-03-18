@@ -19,19 +19,8 @@ public class Main {
         System.out.println("hello world!");
         System.out.println(ttt.depend.test);
 
-        Produit produit = new Produit();
-        produit.setCode_Produit(5);
-        long millis = System.currentTimeMillis();
-        produit.setDate_Limite_Conso(new Date(millis));
-
-
-        SessionFactory config = new Configuration().configure().buildSessionFactory();
-        Session session = config.getCurrentSession();
-
-        Transaction transaction = session.beginTransaction();
-        session.save(produit);
-        transaction.commit();
-
+        TransactionManager orm = myApplicationContext.getBean(TransactionManager.class);
+        orm.createNew();
 
     }
 
