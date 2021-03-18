@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-    //@Table(name = "MY_ENTITY")
+    @Table(name = "Produit")
     public class Produit {
 
     @Id

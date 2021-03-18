@@ -16,7 +16,7 @@
         <!-- Database connection settings -->
 		<!-- MySQL DB-->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost/B3</property>
+        <property name="connection.url">jdbc:mysql://localhost/spring?zeroDateTimeBehavior=CONVERT_TO_NULL&amp;serverTimezone=UTC</property>
 
 		<!-- H2 DB
         <property name="connection.driver_class">org.h2.Driver</property>
@@ -24,22 +24,22 @@
         -->
 
         <!-- SQL dialect -->
-		<!-- MySQL DB
-        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-		-->
+		<!-- MySQL DB -->
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
 		<!-- H2 DB
         <property name="dialect">org.hibernate.dialect.H2Dialect</property>
         -->
         <property name="connection.username">root</property>
-        <property name="connection.password">admin</property>
+        <property name="connection.password"></property>
 
         <!-- JDBC connection pool (use the built-in) -->
-        <property name="connection.pool_size">1</property>
+        <property name="connection.pool_size">9000</property>
 	
 	<!-- Bind one session per request : configures SessionFactory.useCurrentSession() -->
 		<!-- Possible values : jta, thread, managed -->
 		<!-- https://docs.jboss.org/hibernate/orm/4.1/manual/en-US/html/ch02.html#architecture-current-session -->
-	<property name="hibernate.current_session_context_class">managed</property>
+	<property name="hibernate.current_session_context_class">thread</property>
 
         <!-- Disable the second-level cache
         <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
@@ -60,3 +60,14 @@
     </session-factory>
 
 </hibernate-configuration>
+
+
+<!--
+CREATE TABLE Produit(
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(255) NOT NULL,
+  date_Limite_Conso TIMESTAMP NOT NULL,
+  code_Produit INT NOT NULL,
+  quantite INT NOT NULL
+    );
+-->
