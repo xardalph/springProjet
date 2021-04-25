@@ -28,6 +28,13 @@
 
      login :<br/>
 
+    <%--@elvariable id="myEntity" type="MyEntity"--%>
+    <form:form method="POST" action="/" modelAttribute="myEntity" >
+        <form:label path="attributA"> attributA</form:label>
+        <form:input path="attributA"/>
+        <input type="submit" value="Submit">Submit</input>
+
+    </form:form>
 
 
   </body>

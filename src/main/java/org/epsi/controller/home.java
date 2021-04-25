@@ -4,6 +4,8 @@ import org.epsi.MyEntity;
 import org.epsi.model.Produit;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,24 +17,21 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 public class home
 {
-    @RequestMapping(path = "/", method = {GET,POST})
+    @RequestMapping(path = "/", method = {GET})
     public ModelAndView index(Model model)
     {
-
-        ModelAndView result           = new ModelAndView("homeView");
-        String       myEntityInstance = "je suis une très belle StrIIIIIIng";
-
-        result.addObject("myInstance", myEntityInstance);
-        return result;
+        return new ModelAndView("homeView", "myEntity", new MyEntity());
     }
 
-    /*@RequestMapping(path = "/t", method = {POST})
-    public ModelAndView indexPost(@ModelAttribute MyEntity myEntity)
+    @RequestMapping(path = "/", method = {POST})
+    public String indexPost(@ModelAttribute("MyEntity") MyEntity myEntity,
+                                  BindingResult result, ModelMap model)
     {
-        ModelAndView result           = new ModelAndView("homeView");
-        String       myEntityInstance = "je suis une très belle StrIIIIIIng";
+        if (result.hasErrors()) {
+            return "error";
+        }
+        model.addAttribute("attributA", myEntity.getAttributA());
 
-        result.addObject("myInstance", myEntityInstance);
-        return result;
-    }*/
+        return "entityView";
+    }
 }
