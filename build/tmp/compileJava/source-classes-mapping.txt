@@ -1,8 +1,18 @@
 org/epsi/Application.java
  org.epsi.Application
-org/epsi/MyEntity.java
- org.epsi.MyEntity
-org/epsi/model/Produit.java
- org.epsi.model.Produit
 org/epsi/controller/home.java
  org.epsi.controller.home
+org/epsi/SpringHibernateConfig.java
+ org.epsi.SpringHibernateConfig
+org/epsi/model/Produit.java
+ org.epsi.model.Produit
+org/epsi/model/database/TransactionManager.java
+ org.epsi.model.database.TransactionManager
+org/epsi/MyEntity.java
+ org.epsi.MyEntity
+org/epsi/model/User.java
+ org.epsi.model.User
+org/epsi/controller/UserController.java
+ org.epsi.controller.UserController
+org/epsi/testComponent.java
+ org.epsi.testComponent
