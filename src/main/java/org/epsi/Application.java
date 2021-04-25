@@ -1,4 +1,4 @@
-package org.epsi.b3.spring;
+package org.epsi;
 
 import java.util.Arrays;
 

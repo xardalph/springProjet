@@ -48,3 +48,10 @@ Thumbs.db
 *.mov
 *.wmv
 
+
+build*
+gradle*
+.idea*
+.gradle*
+
+
