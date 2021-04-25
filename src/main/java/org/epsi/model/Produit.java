@@ -3,7 +3,7 @@ package org.epsi.model;
 import javax.persistence.*;
 import java.sql.Date;
 
-
+@Entity
 @Table(name = "Produit")
 public class Produit {
 
