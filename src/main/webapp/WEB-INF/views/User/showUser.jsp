@@ -7,7 +7,7 @@
 <html>
 <head>
 <title>show user</title>
-    <jsp:include page="_menu.jsp"></jsp:include>
+    <jsp:include page="../_menu.jsp"></jsp:include>
 
 <h3>Show User</h3>
 
@@ -45,5 +45,5 @@
     </table>
 </div>
 
-<jsp:include page="_bootstrap_js.jsp"></jsp:include>
+<jsp:include page="../_bootstrap_js.jsp"></jsp:include>
 

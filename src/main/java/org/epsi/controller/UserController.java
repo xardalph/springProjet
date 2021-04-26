@@ -1,7 +1,7 @@
 package org.epsi.controller;
 
 import org.epsi.MyEntity;
-import org.epsi.model.Produit;
+
 import org.epsi.model.User;
 import org.epsi.model.database.TransactionManager;
 import org.hibernate.Session;
@@ -50,7 +50,6 @@ public class UserController
         {
             return "error";
         }
-        model.addAttribute("Login", user.getLogin());
 
         //create user in database and log in.
         transactionManager.createNewUser(user);
@@ -63,7 +62,7 @@ public class UserController
     @RequestMapping(path = "/login", method = {GET})
     public ModelAndView ShowLogin(Model model)
     {
-        return new ModelAndView("loginUser", "user", new User());
+        return new ModelAndView("User/loginUser", "user", new User());
     }
 
     @RequestMapping(path = "/login", method = {POST})
@@ -75,9 +74,7 @@ public class UserController
             return new RedirectView("/user/login");
         }
 
-        connectUser(user, req);
-
-        Optional<User> connectedUser = transactionManager.getlogUser(user);
+        Optional<User> connectedUser = transactionManager.getlogedUser(user);
         if (connectedUser.isPresent()){
             connectUser(connectedUser.get(), req);
             return new RedirectView("/user/showUser");
@@ -98,7 +95,7 @@ public class UserController
         User user = (User) session.getAttribute("user");
 
 
-        return new ModelAndView("showUser", "user", user);
+        return new ModelAndView("/User/showUser", "user", user);
     }
 
     public void connectUser(User user, HttpServletRequest req){

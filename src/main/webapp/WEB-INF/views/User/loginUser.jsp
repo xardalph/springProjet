@@ -8,7 +8,7 @@
 <html>
 <head>
     <title>login</title>
-    <jsp:include page="_menu.jsp"></jsp:include>
+    <jsp:include page="../_menu.jsp"></jsp:include>
 
     <h3>login</h3>
 <form:form method="POST" action="/user/login" modelAttribute="user" >
@@ -21,3 +21,5 @@
 
     <input type="submit" value="submit"></input>
 </form:form>
+
+<jsp:include page="../_bootstrap_js.jsp"></jsp:include>
