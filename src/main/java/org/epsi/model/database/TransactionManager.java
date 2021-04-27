@@ -5,6 +5,7 @@ import org.epsi.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -78,5 +80,17 @@ public class TransactionManager
 
         return session.get(Product.class, id);
 
+    }
+
+    public void deleteProduct(Integer id)
+    {
+        Session session                     = this.sessionFactory.getCurrentSession();
+        HibernateTemplate hibernateTemplate = new HibernateTemplate();
+        Object obj = hibernateTemplate.get(Product.class, id);
+        hibernateTemplate.delete(obj);
+        
+        
+        //
+        // session.delete();
     }
 }

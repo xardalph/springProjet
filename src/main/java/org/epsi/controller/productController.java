@@ -3,6 +3,7 @@ package org.epsi.controller;
 import org.epsi.model.Product;
 import org.epsi.model.User;
 import org.epsi.model.database.TransactionManager;
+import org.epsi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +17,11 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @Controller
 @RequestMapping(path = "/product")
@@ -30,13 +31,9 @@ public class productController
     @Autowired
     TransactionManager transactionManager;
 
-    @RequestMapping(path = "/{id}", method = {GET})
-    public ModelAndView ShowproductId(Model model, @PathVariable String id)
-    {
-        ArrayList<Product> product = new ArrayList<Product>();
-        product.add(transactionManager.getProduct(Integer.valueOf(id)));
-        return new ModelAndView("Product/productList", "productList", product);
-    }
+    @Autowired
+    UserService userService;
+
 
     @RequestMapping(path = "/", method = {GET})
     public ModelAndView Showproduct()
@@ -47,14 +44,43 @@ public class productController
 
     }
 
+    @RequestMapping(path = "/{id}", method = {GET})
+    public ModelAndView ShowproductId(@PathVariable String id)
+    {
+        Product product = transactionManager.getProduct(Integer.valueOf(id));
+        return new ModelAndView("Product/productshow", "product", product);
+    }
+
+    @RequestMapping(path = "/{id}", method = {POST})
+    public ModelAndView updateProduct(@ModelAttribute("Product") Product product, BindingResult result, @PathVariable String id)
+    {
+        //need to update data in database
+        return new ModelAndView("Product/productList", "productList", product);
+    }
+
+    @RequestMapping(path = "/{id}", method = DELETE)
+    public RedirectView updateProduct(@PathVariable String id, HttpServletRequest req)
+    {
+        // a new method to check if user is logged in ?
+        if (!userService.checkUserConnection(req)){
+            return new RedirectView("/user/login");
+        }
+        //need to delete a row in database
+        transactionManager.deleteProduct(Integer.valueOf(id));
+        return new RedirectView("/product/");
+
+    }
+
 
     @RequestMapping(path = "/create", method = POST)
     public RedirectView createProduct(@ModelAttribute("Product") Product product,
                                     BindingResult result )
     {
+        //TODO : authentifier l'utilisateur
+        
         if (result.hasErrors())
         {
-            return new RedirectView("/user/login");
+            return new RedirectView("/product/create");
         }
 
         transactionManager.storeNewObject(product);
@@ -69,4 +95,9 @@ public class productController
         return new ModelAndView("Product/productCreate", "product", new Product());
 
     }
+
+
+
+
+
 }
