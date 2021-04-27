@@ -39,27 +39,28 @@ public class UserController
     @RequestMapping(path = "/create", method = {GET})
     public ModelAndView ShowCreate(Model model)
     {
-        return new ModelAndView("createUser", "user", new User());
+        return new ModelAndView("User/createUser", "user", new User());
     }
 
     @RequestMapping(path = "/create", method = {POST})
-    public String CreateUser(@ModelAttribute("User") User user,
+    public RedirectView CreateUser(@ModelAttribute("User") User user,
                              BindingResult result, ModelMap model, HttpServletRequest req)
     {
         if (result.hasErrors())
         {
-            return "error";
+            return new RedirectView("/user/create");
         }
 
         //create user in database and log in.
-        transactionManager.createNewUser(user);
+        transactionManager.storeNewObject(user);
 
         connectUser(user, req);
 
-        return "User Added";
+        return new RedirectView("/user/");
+
     }
 
-    @RequestMapping(path = "/login", method = {GET})
+    @RequestMapping(path = {"/login", "/"}, method = {GET})
     public ModelAndView ShowLogin(Model model)
     {
         return new ModelAndView("User/loginUser", "user", new User());
@@ -67,7 +68,7 @@ public class UserController
 
     @RequestMapping(path = "/login", method = {POST})
     public RedirectView loginUser(@ModelAttribute("User") User user,
-                             BindingResult result, ModelMap model, HttpServletRequest req, HttpServletResponse resp)
+                                  BindingResult result, ModelMap model, HttpServletRequest req, HttpServletResponse resp)
     {
         if (result.hasErrors())
         {
@@ -75,33 +76,44 @@ public class UserController
         }
 
         Optional<User> connectedUser = transactionManager.getlogedUser(user);
-        if (connectedUser.isPresent()){
+        if (connectedUser.isPresent())
+        {
             connectUser(connectedUser.get(), req);
             return new RedirectView("/user/showUser");
 
         }
-        else {
+        else
+        {
             return new RedirectView("/user/login");
 
         }
     }
 
 
-    @RequestMapping(path = "/showUser", method = {GET})
+    @RequestMapping(path = {"/showUser", "/"}, method = {GET})
     public ModelAndView showUser(ModelMap model, HttpServletRequest req, HttpServletResponse resp)
     {
 
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
+        User        user    = (User) session.getAttribute("user");
 
 
         return new ModelAndView("/User/showUser", "user", user);
     }
 
-    public void connectUser(User user, HttpServletRequest req){
+    public void connectUser(User user, HttpServletRequest req)
+    {
         HttpSession session = req.getSession();
         session.setAttribute("user", user);
 
+    }
+
+    @RequestMapping(path = "/logout", method = {GET})
+    public RedirectView logout(HttpServletRequest req)
+    {
+        HttpSession session = req.getSession();
+        session.setAttribute("user", null);
+        return new RedirectView("/user/login");
     }
 
 }

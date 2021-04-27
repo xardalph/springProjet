@@ -27,7 +27,7 @@ public class TransactionManager
         this.sessionFactory = sessionFactory;
     }
 
-    public void createNewUser(Object user)
+    public void storeNewObject(Object user)
     {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(user);

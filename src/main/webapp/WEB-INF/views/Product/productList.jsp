@@ -38,3 +38,5 @@
 
     </table>
 
+
+<jsp:include page="../_bootstrap_js.jsp"></jsp:include>
