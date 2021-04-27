@@ -23,7 +23,7 @@ dependencies {
 
     // -- Partie III -- //
     implementation "org.springframework:spring-orm:${springframeworkVersion}"
-    implementation "mysql:mysql-connector-java:6.0.6"
+    implementation "mysql:mysql-connector-java:8.0.22"
 
     // -- Partie IV -- //
     implementation 'org.springframework.boot:spring-boot-starter-web'
