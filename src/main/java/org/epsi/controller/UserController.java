@@ -90,7 +90,7 @@ public class UserController
     }
 
 
-    @RequestMapping(path = {"/showUser", "/"}, method = {GET})
+    @RequestMapping(path = {"/showUser"}, method = {GET})
     public ModelAndView showUser(ModelMap model, HttpServletRequest req, HttpServletResponse resp)
     {
 
