@@ -11,17 +11,13 @@ public class Product {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
+    private String name;
 
-    private String nom;
+    private Date dateLimiteConso;
 
+    private Integer codeProduit;
 
-    private Date date_Limite_Conso;
-
-
-    private Integer code_Produit;
-
-
-    private Integer quantite;
+    private Integer quantity;
 
     public Integer getId() {
         return id;
@@ -31,35 +27,35 @@ public class Product {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String nom) {
+        this.name = nom;
     }
 
-    public Date getDate_Limite_Conso() {
-        return date_Limite_Conso;
+    public Date getDateLimiteConso() {
+        return dateLimiteConso;
     }
 
-    public void setDate_Limite_Conso(Date date_Limite_Conso) {
-        this.date_Limite_Conso = date_Limite_Conso;
+    public void setDateLimiteConso(Date date_Limite_Conso) {
+        this.dateLimiteConso = date_Limite_Conso;
     }
 
-    public Integer getCode_Produit() {
-        return code_Produit;
+    public Integer getCodeProduit() {
+        return codeProduit;
     }
 
-    public void setCode_Produit(Integer code_Produit) {
-        this.code_Produit = code_Produit;
+    public void setCodeProduit(Integer code_Produit) {
+        this.codeProduit = code_Produit;
     }
 
-    public Integer getQuantite() {
-        return quantite;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setQuantite(Integer quantite) {
-        this.quantite = quantite;
+    public void setQuantity(Integer quantite) {
+        this.quantity = quantite;
     }
 }
