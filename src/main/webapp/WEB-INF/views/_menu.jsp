@@ -12,8 +12,10 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #111111;">
-   <a class="navbar-brand " href="/">Home</a>
-   <a class="navbar-brand " href="/user">user</a>
+   <a class="navbar-brand " href="/product/">Home</a>
+   <a class="navbar-brand " href="/product/create">create product</a>
+   <a class="navbar-brand " href="/user/login">login</a>
+   <a class="navbar-brand " href="/user/create">create User</a>
 
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">

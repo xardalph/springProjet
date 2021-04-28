@@ -28,10 +28,10 @@
                 <td>${product.name}</td>
                 <td>${product.quantity}</td>
                 <td>
-                    <a href="editProduct?code=${product.id}">Edit</a>
+                    <a href="/product/update/${product.id}">Edit</a>
                 </td>
                 <td>
-                    <a href="deleteProduct?code=${product.id}">Delete</a>
+                    <a href="/product/delete/${product.id}">Delete</a>
                 </td>
             </tr>
         </c:forEach>

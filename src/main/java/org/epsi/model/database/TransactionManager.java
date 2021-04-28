@@ -32,7 +32,7 @@ public class TransactionManager
     public void storeNewObject(Object user)
     {
         Session session = this.sessionFactory.getCurrentSession();
-        session.save(user);
+        session.saveOrUpdate(user);
 
     }
 
@@ -84,13 +84,14 @@ public class TransactionManager
 
     public void deleteProduct(Integer id)
     {
-        Session session                     = this.sessionFactory.getCurrentSession();
-        HibernateTemplate hibernateTemplate = new HibernateTemplate();
-        Object obj = hibernateTemplate.get(Product.class, id);
-        hibernateTemplate.delete(obj);
+        // this query the object before deleting it, not good in performance but way easier
+        Session session = this.sessionFactory.getCurrentSession();
+
+        Object obj = session.get(Product.class, id);
+
+        session.delete(obj);
+        session.flush();
         
-        
-        //
-        // session.delete();
+
     }
 }

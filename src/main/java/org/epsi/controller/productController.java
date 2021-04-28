@@ -51,6 +51,14 @@ public class productController
         return new ModelAndView("Product/productshow", "product", product);
     }
 
+    @RequestMapping(path = "/update/{id}", method = GET)
+    public ModelAndView getUpdateProduct(@PathVariable String id)
+    {
+        Product product = transactionManager.getProduct(Integer.valueOf(id));
+
+        return new ModelAndView("Product/productCreate", "product", product);
+    }
+
     @RequestMapping(path = "/{id}", method = {POST})
     public ModelAndView updateProduct(@ModelAttribute("Product") Product product, BindingResult result, @PathVariable String id)
     {
@@ -58,8 +66,8 @@ public class productController
         return new ModelAndView("Product/productList", "productList", product);
     }
 
-    @RequestMapping(path = "/{id}", method = DELETE)
-    public RedirectView updateProduct(@PathVariable String id, HttpServletRequest req)
+    @RequestMapping(path = "/delete/{id}", method = GET)
+    public RedirectView deleteProduct(@PathVariable String id, HttpServletRequest req)
     {
         // a new method to check if user is logged in ?
         if (!userService.checkUserConnection(req)){
@@ -71,13 +79,12 @@ public class productController
 
     }
 
-
     @RequestMapping(path = "/create", method = POST)
     public RedirectView createProduct(@ModelAttribute("Product") Product product,
                                     BindingResult result )
     {
         //TODO : authentifier l'utilisateur
-        
+
         if (result.hasErrors())
         {
             return new RedirectView("/product/create");
