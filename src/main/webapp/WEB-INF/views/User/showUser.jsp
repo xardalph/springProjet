@@ -35,7 +35,8 @@
         </tr>
         <tr>
             <th scope="col">password</th>
-            <td>**********</td>
+            <td><c:if test="${!empty user.username}">**********</c:if>
+                </td>
         </tr>
         <tr>
             <th scope="col">adresse</th>

@@ -37,8 +37,9 @@
                 <td>${product.quantity}</td>
                 <td>${product.dateLimiteConso}</td>
 
-                <td><c:if  test="${product.dateLimiteConso
-                 <= now}">PERIME</c:if>
+                <td><c:if  test="${product.dateLimiteConso <= now}">
+                    PERIME
+                </c:if>
                 </td>
                 <td>
                 <a href="/product/update/${product.id}">Edit</a>

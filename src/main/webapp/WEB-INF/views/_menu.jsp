@@ -12,16 +12,21 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #111111;">
+   <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
    <a class="navbar-brand " href="/product/">Home</a>
-   <a class="navbar-brand " href="/product/create">create product</a>
-   <a class="navbar-brand " href="/user/login">login</a>
-   <a class="navbar-brand " href="/user/create">create User</a>
-   <a class="navbar-brand " href="/user/logout">Logout</a>
+      </li>
+      <li class="nav-item active">
+   <a class="navbar-brand " href="/product/create">créer un produit</a>
+      </li>
+   <a class="navbar-brand " href="/user/login">Connexion</a>
+      <li class="nav-item active">
+   <a class="navbar-brand " href="/user/create">nouvel utilisateur</a>
+      </li>
 
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-           aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-   </button>
+   </ul>
+   <a class="navbar-brand " href="/user/showUser">détail</a>
+   <a class="navbar-brand btn btn-primary" href="/user/logout">Déconnexion</a>
 
 
 </nav>

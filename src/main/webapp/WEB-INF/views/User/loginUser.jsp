@@ -11,15 +11,17 @@
     <jsp:include page="../_menu.jsp"></jsp:include>
 
     <h3>login</h3>
+
+    <div class="w-25">
 <form:form method="POST" action="/user/login" modelAttribute="user" >
     <br/>
-    <form:label path="login"> Login</form:label>
-    <form:input path="login"/>
+    <form:label  path="login"> Login</form:label>
+    <form:input class="form-control" placeholder="Login" path="login" />
     <br/>
     <form:label path="password">password</form:label>
-    <form:input path="password"/>
+    <form:input type="password" placeholder="Password" class="form-control" path="password"/>
 
-    <input type="submit" value="submit"></input>
+    <input type="submit" class="btn btn-primary mt-3" value="submit"></input>
 </form:form>
-
+    </div>
 <jsp:include page="../_bootstrap_js.jsp"></jsp:include>
