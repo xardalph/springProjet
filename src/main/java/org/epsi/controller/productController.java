@@ -35,7 +35,7 @@ public class productController
     UserService userService;
 
 
-    @RequestMapping(path = "/", method = {GET})
+    @RequestMapping(path = {"/", ""}, method = {GET})
     public ModelAndView Showproduct()
     {
         List<Product> product = transactionManager.getAllProduct();
@@ -44,25 +44,26 @@ public class productController
 
     }
 
-    @RequestMapping(path = "/{id}", method = {GET})
-    public ModelAndView ShowproductId(@PathVariable String id)
-    {
-        Product product = transactionManager.getProduct(Integer.valueOf(id));
-        return new ModelAndView("Product/productshow", "product", product);
-    }
-
+    // UPDATE
     @RequestMapping(path = "/update/{id}", method = GET)
-    public ModelAndView getUpdateProduct(@PathVariable String id)
+    public ModelAndView getUpdateProduct(@PathVariable String id, HttpServletRequest req)
     {
+        if (!userService.checkUserConnection(req)){
+            return new ModelAndView("/User/loginUser", "user", new User());
+        }
+
         Product product = transactionManager.getProduct(Integer.valueOf(id));
 
         return new ModelAndView("Product/productCreate", "product", product);
     }
 
     @RequestMapping(path = "/{id}", method = {POST})
-    public ModelAndView updateProduct(@ModelAttribute("Product") Product product, BindingResult result, @PathVariable String id)
+    public ModelAndView updateProduct(@ModelAttribute("Product") Product product, BindingResult result, @PathVariable String id, HttpServletRequest req)
     {
-        //need to update data in database
+        if (!userService.checkUserConnection(req)){
+            return new ModelAndView("/user/login");
+        }
+
         return new ModelAndView("Product/productList", "productList", product);
     }
 
@@ -81,9 +82,11 @@ public class productController
 
     @RequestMapping(path = "/create", method = POST)
     public RedirectView createProduct(@ModelAttribute("Product") Product product,
-                                    BindingResult result )
+                                    BindingResult result, HttpServletRequest req)
     {
-        //TODO : authentifier l'utilisateur
+        if (!userService.checkUserConnection(req)){
+            return new RedirectView("/user/login");
+        }
 
         if (result.hasErrors())
         {
@@ -97,11 +100,15 @@ public class productController
     }
 
     @RequestMapping(path = "/create", method = GET)
-    public ModelAndView getCreateProduct()
+    public ModelAndView getCreateProduct(HttpServletRequest req)
     {
+        if (!userService.checkUserConnection(req)){
+            return new ModelAndView("/User/loginUser", "user", new User());
+        }
         return new ModelAndView("Product/productCreate", "product", new Product());
 
     }
+
 
 
 

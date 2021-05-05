@@ -16,6 +16,7 @@
    <a class="navbar-brand " href="/product/create">create product</a>
    <a class="navbar-brand " href="/user/login">login</a>
    <a class="navbar-brand " href="/user/create">create User</a>
+   <a class="navbar-brand " href="/user/logout">Logout</a>
 
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">

@@ -79,7 +79,7 @@ public class UserController
         if (connectedUser.isPresent())
         {
             connectUser(connectedUser.get(), req);
-            return new RedirectView("/user/showUser");
+            return new RedirectView("/product/");
 
         }
         else

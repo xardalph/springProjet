@@ -58,4 +58,7 @@ public class Product {
     public void setQuantity(Integer quantite) {
         this.quantity = quantite;
     }
+
+    public Integer getRemainingDays() {return 5;}
+
 }
