@@ -56,7 +56,7 @@ public class UserController
 
         connectUser(user, req);
 
-        return new RedirectView("/user/");
+        return new RedirectView("/product/");
 
     }
 
