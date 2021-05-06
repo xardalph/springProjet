@@ -15,7 +15,7 @@
 <%--@elvariable id="product" type="org.epsi.model.Product"--%>
 <form:form method="POST" action="/product/create" modelAttribute="product" >
     <br/>
-    <form:label path="id" type="hidden">id</form:label>
+    <form:label path="id" type="hidden"></form:label>
         <form:input path="id" type="hidden"/>
     <br/>
 

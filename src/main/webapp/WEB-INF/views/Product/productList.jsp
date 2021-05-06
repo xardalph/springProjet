@@ -13,10 +13,6 @@
     <h3>liste des produits</h3>
 <br/>
 
-    <p>
-
-        <b><c:out value="${now}"/></b>
-    </p>
 
     <table class="table table-bordered table-striped table-dark" >
         <tr>
